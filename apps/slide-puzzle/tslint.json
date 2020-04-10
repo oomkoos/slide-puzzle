@@ -1,0 +1,20 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "slidePuzzleJestCypress",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "slide-puzzle-jest-cypress",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
+  }
+}

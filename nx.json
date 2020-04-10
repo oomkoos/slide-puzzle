@@ -1,0 +1,30 @@
+{
+  "npmScope": "slide-puzzle-jest-cypress",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "slide-puzzle": {
+      "tags": []
+    },
+    "slide-puzzle-e2e": {
+      "tags": [],
+      "implicitDependencies": ["slide-puzzle"]
+    }
+  }
+}

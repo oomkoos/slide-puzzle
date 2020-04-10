@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "slide-puzzle": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/slide-puzzle",
+      "sourceRoot": "apps/slide-puzzle/src",
+      "prefix": "slide-puzzle-jest-cypress",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/slide-puzzle",
+            "index": "apps/slide-puzzle/src/index.html",
+            "main": "apps/slide-puzzle/src/main.ts",
+            "polyfills": "apps/slide-puzzle/src/polyfills.ts",
+            "tsConfig": "apps/slide-puzzle/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/slide-puzzle/src/favicon.ico",
+              "apps/slide-puzzle/src/assets"
+            ],
+            "styles": ["apps/slide-puzzle/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/slide-puzzle/src/environments/environment.ts",
+                  "with": "apps/slide-puzzle/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "slide-puzzle:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "slide-puzzle:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "slide-puzzle:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/slide-puzzle/tsconfig.app.json",
+              "apps/slide-puzzle/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/slide-puzzle/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/slide-puzzle/jest.config.js",
+            "tsConfig": "apps/slide-puzzle/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/slide-puzzle/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "slide-puzzle-e2e": {
+      "root": "apps/slide-puzzle-e2e",
+      "sourceRoot": "apps/slide-puzzle-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/slide-puzzle-e2e/cypress.json",
+            "tsConfig": "apps/slide-puzzle-e2e/tsconfig.e2e.json",
+            "devServerTarget": "slide-puzzle:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "slide-puzzle:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/slide-puzzle-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/slide-puzzle-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "slide-puzzle"
+}
