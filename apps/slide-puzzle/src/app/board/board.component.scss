@@ -1,0 +1,141 @@
+// TODO use as global
+$base-font: sans-serif;
+$desktop: 1280px;
+$laptop: 1024px;
+$tablet: 768px;
+$smart-phone: 480px;
+$phone: 320px;
+
+@mixin base-font($size, $color ) {
+  font-family: $base-font;
+  font-size: $size;
+  color: $color;
+}
+
+@mixin flex($direction, $content, $items ) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $content;
+  align-items: $items;
+}
+
+.board {
+  @include flex(column, space-around, center);
+  margin: 5px;
+}
+
+.table {
+  display: table;
+  width: 500px;
+  height: 500px;
+  position: relative;
+  background-color: black;
+}
+
+.table__row {
+  display: table-row;
+}
+
+.table__cell {
+  border: 1px solid black;
+  display: table-cell;
+}
+
+.table__body {
+  display: table-row-group;
+}
+
+.overlay {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.overlay-animate {
+  animation: opac 0.5s
+}
+
+@keyframes opac {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.control__bar {
+  @include flex(row, space-around, center);
+  margin: 5px;
+}
+
+.action__button {
+  @include base-font(20px, #000);
+  border: 10px solid #00539e;
+  background: #fff;
+  border-radius: 50%;
+  margin-top: 20px;
+  height: 150px;
+  width: 150px;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+
+  &:focus {
+    border-color: #35aaff;
+    transition: 0.4s ease-out;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  &:hover {
+    border-color: #35aaff;
+    transition: 0.4s ease-out;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  &:active {
+    border-color: #2556ff;
+    transition: 0.3s ease-out;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
+  }
+
+  //@media (max-width: $laptop+1px) {
+  //  width: 100px;
+  //  height: 100px;
+  //  font-size: 17px;
+  //  border-width: 5px;
+  //
+  //}
+  //
+  //@media (max-width: $phone) {
+  //  width: 80px;
+  //  height: 80px;
+  //  font-size: 15px;
+  //
+  //}
+}
+
+.static__button {
+  @include base-font(20px, #000);
+  border: 10px solid #00539e;
+  background: #fff;
+  border-radius: 50%;
+  margin-top: 20px;
+  height: 150px;
+  width: 150px;
+  outline: none;
+  font-weight: bold;
+  padding: 0;
+  cursor: default;
+}
+
+.disabled {
+  background-color: #00539e;
+}

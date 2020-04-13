@@ -1,0 +1,8 @@
+<div
+  class="block"
+  [ngClass]="{'blank__block': state.style.background === 'black'}"
+  (click)="move(state)"
+  [ngStyle]="state.style"
+  [id]="state.name"
+>
+</div>

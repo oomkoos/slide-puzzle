@@ -1,0 +1,38 @@
+<div class="board">
+  <div class="control__bar">
+    <button
+      class="action__button"
+      [ngClass]="{'disabled' : successPositionCounter !== 0}"
+      [disabled]="successPositionCounter !== 0"
+      data-ts-automation="newButton"
+      (click)="shuffle()">New
+    </button>
+    <button
+      class="static__button"
+      *ngIf="this.isGameActive"
+      data-ts-automation="movesCounter"
+      disabled>Moves: {{movesCounter}}
+    </button>
+    <button
+      class="static__button"
+      *ngIf="this.isGameActive && movesTopScore"
+      data-ts-automation="movesTopScore"
+      disabled>Top score: {{movesTopScore}}
+    </button>
+  </div>
+  <div class="table">
+    <div class="overlay overlay-animate" *ngIf="successPositionCounter === 0"></div>
+    <div class="table__body">
+      <div class="table__row" *ngFor="let row of boardState">
+        <ng-container *ngFor="let column of row">
+          <div class="table__cell">
+            <slide-puzzle-jest-cypress-block
+              [state]="column"
+              (moveMe)="moveBlock($event)">
+            </slide-puzzle-jest-cypress-block>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
