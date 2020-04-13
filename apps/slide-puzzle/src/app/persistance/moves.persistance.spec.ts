@@ -28,6 +28,5 @@ describe('[MovesPersistance]', () => {
 
     expect(sessionStorage.getItem)
       .toHaveBeenCalled();
-    console.log(sessionStorage.getItem('_storage.moves'));
   });
 });
